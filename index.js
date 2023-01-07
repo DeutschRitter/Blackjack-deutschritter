@@ -12,20 +12,23 @@ let messageEl = document.getElementById("message-el");
 let playerEl = document.getElementById("player-el");
 let sum = 0;
 let sumEl = document.querySelector("#sum-el");
+let gameStarted = false;
 
 playerEl.textContent = player.name + ": $" + player.chips;
 
 function startGame() {
-  isAlive = true;
-  let firstCard = getRandomCard();
-  let secondCard = getRandomCard();
+  if (gameStarted === false) {
+    isAlive = true;
+    let firstCard = getRandomCard();
+    let secondCard = getRandomCard();
 
-  cards.push(firstCard);
-  cards.push(secondCard);
+    cards.push(firstCard);
+    cards.push(secondCard);
 
-  sum = firstCard + secondCard;
-
-  renderGame();
+    sum = firstCard + secondCard;
+    gameStarted = true;
+    renderGame();
+  }
 }
 
 function renderGame() {
@@ -65,4 +68,8 @@ function getRandomCard() {
   } else {
     return cardValue;
   }
+}
+
+function reset() {
+  location.reload();
 }
